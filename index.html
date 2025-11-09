@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AllWebList.org - Free Web Directory | Submit Your Website for SEO</title>
+    <meta name="description" content="Free web directory for instant website listings. Submit your site for SEO backlinks and get published instantly. Browse categorized websites and discover new online resources.">
+    <meta name="keywords" content="web directory, free website submission, SEO backlinks, website listing, site directory">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .category-badge {
+            transition: all 0.2s ease;
+        }
+        .category-badge:hover {
+            transform: scale(1.05);
+        }
+        .search-focus {
+            transition: all 0.3s ease;
+        }
+        .search-focus:focus {
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold">AllWebList.org</h1>
+                    <p class="text-sm opacity-90 mt-1">Your Free Web Directory for SEO Success</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="submit.html" class="bg-white text-purple-700 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
+                        <i class="fas fa-plus-circle mr-2"></i>Submit Website
+                    </a>
+                    <a href="admin.html" class="bg-purple-800 text-white px-6 py-2 rounded-full font-semibold hover:bg-purple-900 transition">
+                        <i class="fas fa-user-shield mr-2"></i>Admin
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Banner -->
+    <div class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-center gap-8 text-center">
+                <div>
+                    <div class="text-2xl font-bold text-purple-700" id="totalWebsites">0</div>
+                    <div class="text-sm text-gray-600">Total Websites</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-purple-700">20</div>
+                    <div class="text-sm text-gray-600">Categories</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-purple-700">Instant</div>
+                    <div class="text-sm text-gray-600">Publishing</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search & Filter Section -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Search Websites</label>
+                    <input type="text" id="searchInput" placeholder="Search by title, description, or URL..." class="w-full px-4 py-3 border border-gray-300 rounded-lg search-focus focus:outline-none focus:border-purple-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Filter by Category</label>
+                    <select id="categoryFilter" class="w-full px-4 py-3 border border-gray-300 rounded-lg search-focus focus:outline-none focus:border-purple-500">
+                        <option value="">All Categories</option>
+                        <option value="Business">Business</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Education">Education</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Health">Health</option>
+                        <option value="Sports">Sports</option>
+                        <option value="News">News</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Food">Food</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Real Estate">Real Estate</option>
+                        <option value="Automotive">Automotive</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Social Media">Social Media</option>
+                        <option value="Art & Design">Art & Design</option>
+                        <option value="Music">Music</option>
+                        <option value="Gaming">Gaming</option>
+                        <option value="Science">Science</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-4 flex items-center justify-between">
+                <div class="text-sm text-gray-600">
+                    <span id="resultCount">0</span> websites found
+                </div>
+                <button id="clearFilters" class="text-sm text-purple-700 hover:text-purple-800 font-medium">
+                    <i class="fas fa-times-circle mr-1"></i>Clear Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Category Quick Filter -->
+        <div class="mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Browse by Category</h2>
+            <div class="flex flex-wrap gap-2" id="categoryBadges">
+                <!-- Category badges will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Websites Listing -->
+        <div id="websitesContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Website cards will be inserted here -->
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="text-center py-12 hidden">
+            <i class="fas fa-spinner fa-spin text-4xl text-purple-600"></i>
+            <p class="text-gray-600 mt-4">Loading websites...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="text-center py-12 hidden">
+            <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
+            <h3 class="text-xl font-semibold text-gray-700 mb-2">No websites found</h3>
+            <p class="text-gray-600 mb-6">Try adjusting your search or filters</p>
+            <a href="submit.html" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+                <i class="fas fa-plus-circle mr-2"></i>Submit the First Website
+            </a>
+        </div>
+
+        <!-- Pagination -->
+        <div id="paginationContainer" class="mt-8 flex justify-center gap-2 hidden">
+            <!-- Pagination buttons will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AllWebList.org</h3>
+                    <p class="text-gray-400 text-sm">Free web directory for instant website submissions. Get quality SEO backlinks and increase your online visibility.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="submit.html" class="text-gray-400 hover:text-white transition">Submit Website</a></li>
+                        <li><a href="admin.html" class="text-gray-400 hover:text-white transition">Admin Panel</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Submission Guidelines</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>No adult content</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>No gambling sites</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Instant publishing</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>100% free forever</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
+                <p>&copy; 2025 AllWebList.org - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/content-filter.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

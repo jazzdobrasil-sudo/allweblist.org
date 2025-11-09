@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Website - AllWebList.org</title>
+    <meta name="description" content="Submit your website to AllWebList.org for instant publishing and free SEO backlinks. No adult or gambling sites allowed.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .form-focus {
+            transition: all 0.3s ease;
+        }
+        .form-focus:focus {
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold">AllWebList.org</h1>
+                    <p class="text-sm opacity-90 mt-1">Submit Your Website for Free SEO Backlinks</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="index.html" class="bg-white text-purple-700 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="admin.html" class="bg-purple-800 text-white px-6 py-2 rounded-full font-semibold hover:bg-purple-900 transition">
+                        <i class="fas fa-user-shield mr-2"></i>Admin
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <!-- Info Banner -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+                <div class="flex items-start gap-4">
+                    <i class="fas fa-info-circle text-blue-600 text-2xl mt-1"></i>
+                    <div>
+                        <h3 class="font-semibold text-blue-900 mb-2">Instant Publishing Benefits</h3>
+                        <ul class="text-sm text-blue-800 space-y-1">
+                            <li><i class="fas fa-check-circle mr-2"></i>Your website will be published instantly</li>
+                            <li><i class="fas fa-check-circle mr-2"></i>Get quality SEO backlinks for free</li>
+                            <li><i class="fas fa-check-circle mr-2"></i>Increase your website visibility</li>
+                            <li><i class="fas fa-check-circle mr-2"></i>No approval process required</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submission Form -->
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Submit Your Website</h2>
+                
+                <form id="submissionForm">
+                    <!-- Website Title -->
+                    <div class="mb-6">
+                        <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
+                            Website Title <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="title" required maxlength="100" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-focus focus:outline-none focus:border-purple-500"
+                            placeholder="Enter your website title">
+                        <p class="text-xs text-gray-500 mt-1">Maximum 100 characters</p>
+                    </div>
+
+                    <!-- Website URL -->
+                    <div class="mb-6">
+                        <label for="url" class="block text-sm font-medium text-gray-700 mb-2">
+                            Website URL <span class="text-red-500">*</span>
+                        </label>
+                        <input type="url" id="url" required 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-focus focus:outline-none focus:border-purple-500"
+                            placeholder="https://example.com">
+                        <p class="text-xs text-gray-500 mt-1">Must start with http:// or https://</p>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-6">
+                        <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
+                            Website Description <span class="text-red-500">*</span>
+                        </label>
+                        <textarea id="description" required rows="5" maxlength="500"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-focus focus:outline-none focus:border-purple-500"
+                            placeholder="Describe your website in detail..."></textarea>
+                        <p class="text-xs text-gray-500 mt-1">Maximum 500 characters. <span id="charCount">0</span>/500</p>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="mb-6">
+                        <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
+                            Category <span class="text-red-500">*</span>
+                        </label>
+                        <select id="category" required 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-focus focus:outline-none focus:border-purple-500">
+                            <option value="">Select a category</option>
+                            <option value="Business">Business</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Education">Education</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Health">Health</option>
+                            <option value="Sports">Sports</option>
+                            <option value="News">News</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Food">Food</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Real Estate">Real Estate</option>
+                            <option value="Automotive">Automotive</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Social Media">Social Media</option>
+                            <option value="Art & Design">Art & Design</option>
+                            <option value="Music">Music</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Science">Science</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="mb-6">
+                        <label for="tags" class="block text-sm font-medium text-gray-700 mb-2">
+                            Tags (Optional)
+                        </label>
+                        <input type="text" id="tags" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg form-focus focus:outline-none focus:border-purple-500"
+                            placeholder="e.g., SEO, Marketing, Tools (comma separated)">
+                        <p class="text-xs text-gray-500 mt-1">Separate tags with commas</p>
+                    </div>
+
+                    <!-- Content Policy -->
+                    <div class="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-exclamation-triangle text-red-600 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-red-900 mb-2">Content Policy</h4>
+                                <p class="text-sm text-red-800 mb-2">The following types of websites are <strong>NOT ALLOWED</strong>:</p>
+                                <ul class="text-sm text-red-800 space-y-1">
+                                    <li><i class="fas fa-ban mr-2"></i>Adult content or pornography</li>
+                                    <li><i class="fas fa-ban mr-2"></i>Gambling or casino sites</li>
+                                    <li><i class="fas fa-ban mr-2"></i>Illegal or harmful content</li>
+                                </ul>
+                                <p class="text-sm text-red-800 mt-2">Submissions violating these rules will be automatically flagged and removed.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agreement Checkbox -->
+                    <div class="mb-6">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" id="agreement" required class="mt-1">
+                            <span class="text-sm text-gray-700">
+                                I confirm that my website does not contain adult content, gambling content, or any illegal material. I understand that submissions violating these rules will be removed. <span class="text-red-500">*</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex gap-4">
+                        <button type="submit" id="submitBtn" 
+                            class="flex-1 bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fas fa-paper-plane mr-2"></i>Submit Website
+                        </button>
+                        <button type="reset" 
+                            class="px-6 py-3 border border-gray-300 rounded-lg font-semibold text-gray-700 hover:bg-gray-50 transition">
+                            <i class="fas fa-redo mr-2"></i>Reset
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="hidden mt-6 bg-green-50 border border-green-200 rounded-lg p-6">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-check-circle text-green-600 text-3xl"></i>
+                        <div>
+                            <h3 class="font-semibold text-green-900 mb-2">Success! Your Website is Live!</h3>
+                            <p class="text-sm text-green-800 mb-4">Your website has been published instantly and is now visible in our directory.</p>
+                            <div class="flex gap-3">
+                                <a href="index.html" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-700 transition">
+                                    <i class="fas fa-home mr-2"></i>View Directory
+                                </a>
+                                <button onclick="location.reload()" class="inline-block bg-white text-green-700 border border-green-300 px-4 py-2 rounded-lg text-sm hover:bg-green-50 transition">
+                                    <i class="fas fa-plus mr-2"></i>Submit Another
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="hidden mt-6 bg-red-50 border border-red-200 rounded-lg p-6">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-exclamation-circle text-red-600 text-3xl"></i>
+                        <div>
+                            <h3 class="font-semibold text-red-900 mb-2">Submission Blocked</h3>
+                            <p class="text-sm text-red-800" id="errorText"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-4 py-8">
+            <div class="text-center text-sm text-gray-400">
+                <p>&copy; 2025 AllWebList.org - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/content-filter.js"></script>
+    <script src="js/submit.js"></script>
+</body>
+</html>
