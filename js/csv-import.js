@@ -86,15 +86,20 @@ function parseAndValidateCsv(csvText) {
             return;
         }
         
-        // Validate headers
-        const headers = rows[0];
-        const requiredHeaders = ['title', 'url', 'description', 'category'];
-        const missingHeaders = requiredHeaders.filter(h => !headers.includes(h));
-        
-        if (missingHeaders.length > 0) {
-            alert(`Missing required columns: ${missingHeaders.join(', ')}`);
-            return;
-        }
+        // NEW CODE:
+// Validate headers - trim and lowercase for comparison
+const headers = rows[0].map(h => h.trim().toLowerCase());
+const requiredHeaders = ['title', 'url', 'description', 'category'];
+const missingHeaders = requiredHeaders.filter(h => !headers.includes(h.toLowerCase()));
+
+console.log('CSV Headers detected:', headers);
+console.log('Required headers:', requiredHeaders);
+
+if (missingHeaders.length > 0) {
+    alert(`Missing required columns: ${missingHeaders.join(', ')}\n\nDetected headers: ${headers.join(', ')}`);
+    return;
+}
+
         
         // Get header indices
         const titleIdx = headers.indexOf('title');
