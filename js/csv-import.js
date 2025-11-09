@@ -416,6 +416,7 @@ async function startBulkImport() {
 /**
  * Import single website
  */
+// NEW CODE:
 async function importSingleWebsite(website) {
     const submissionData = {
         title: ContentFilter.sanitizeInput(website.title),
@@ -424,26 +425,43 @@ async function importSingleWebsite(website) {
         category: website.category,
         tags: website.tags,
         status: 'published',
-        submittedBy: 'admin',
-        submittedAt: new Date().toISOString(),
+        submitted_by: 'admin',
+        submitted_at: new Date().toISOString(),
         flagged: website.flagged || false,
-        flagReason: website.flagged ? 'CSV Import - Content filter triggered' : ''
+        flag_reason: website.flagged ? 'CSV Import - Content filter triggered' : ''
     };
     
-    const response = await fetch('tables/websites', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(submissionData)
-    });
-    
-    if (!response.ok) {
-        throw new Error(`Failed to import: ${website.title}`);
+    // Use Supabase client if available
+    if (window.supabaseClient) {
+        const { data, error } = await window.supabaseClient
+            .from('websites')
+            .insert([submissionData])
+            .select();
+        
+        if (error) {
+            console.error('Supabase import error:', error);
+            throw new Error(`Failed to import: ${website.title} - ${error.message}`);
+        }
+        
+        return data[0];
+    } else {
+        // Fallback to REST API (old method)
+        const response = await fetch('tables/websites', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(submissionData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Failed to import: ${website.title}`);
+        }
+        
+        return await response.json();
     }
-    
-    return await response.json();
 }
+
 
 /**
  * Escape HTML
