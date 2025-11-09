@@ -165,11 +165,17 @@ if (missingHeaders.length > 0) {
 /**
  * Simple CSV parser (handles quoted fields)
  */
+/**
+ * Simple CSV parser (handles quoted fields with improved comma detection)
+ */
 function parseCsv(text) {
     const rows = [];
     let currentRow = [];
     let currentField = '';
     let inQuotes = false;
+    
+    // Normalize line endings
+    text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     
     for (let i = 0; i < text.length; i++) {
         const char = text[i];
@@ -177,41 +183,48 @@ function parseCsv(text) {
         
         if (char === '"') {
             if (inQuotes && nextChar === '"') {
-                // Escaped quote
+                // Escaped quote inside quoted field
                 currentField += '"';
-                i++;
+                i++; // Skip next quote
             } else {
                 // Toggle quote state
                 inQuotes = !inQuotes;
             }
         } else if (char === ',' && !inQuotes) {
             // End of field
-            currentRow.push(currentField);
+            currentRow.push(currentField.trim());
             currentField = '';
-        } else if ((char === '\n' || char === '\r') && !inQuotes) {
+        } else if (char === '\n' && !inQuotes) {
             // End of row
-            if (char === '\r' && nextChar === '\n') {
-                i++; // Skip \r\n
-            }
-            if (currentField || currentRow.length > 0) {
-                currentRow.push(currentField);
-                rows.push(currentRow);
+            if (currentField !== '' || currentRow.length > 0) {
+                currentRow.push(currentField.trim());
+                if (currentRow.some(cell => cell !== '')) {
+                    rows.push(currentRow);
+                }
                 currentRow = [];
                 currentField = '';
             }
         } else {
+            // Regular character
             currentField += char;
         }
     }
     
-    // Add last field and row
-    if (currentField || currentRow.length > 0) {
-        currentRow.push(currentField);
-        rows.push(currentRow);
+    // Add last field and row if exists
+    if (currentField !== '' || currentRow.length > 0) {
+        currentRow.push(currentField.trim());
+        if (currentRow.some(cell => cell !== '')) {
+            rows.push(currentRow);
+        }
     }
+    
+    console.log('Parsed CSV rows:', rows.length);
+    console.log('First row (headers):', rows[0]);
+    console.log('Second row (sample):', rows[1]);
     
     return rows;
 }
+
 
 /**
  * Validate website data
